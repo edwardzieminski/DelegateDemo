@@ -6,7 +6,8 @@ Machine machine = new Machine();
 var machine1Metrics = machine.Run(machine.ToDo1);
 Console.WriteLine($"Machine 1 was running for { machine1Metrics.StopWatch.ElapsedMilliseconds } ms");
 
-var machine2Metrics = machine.Run(machine.ToDo2);
+var machineExternalMethods = new MachineExternalMethods();
+var machine2Metrics = machine.Run(machineExternalMethods.ToDo2);
 Console.WriteLine($"Machine 2 was running for { machine2Metrics.StopWatch.ElapsedMilliseconds } ms");
 
 public class Machine
@@ -30,7 +31,10 @@ public class Machine
         Console.WriteLine("Wrum wrum 1");
         Console.WriteLine("Zamykam maszynę 1");
     }
+}
 
+public class MachineExternalMethods
+{
     public void ToDo2()
     {
         Console.WriteLine("Odpalam maszynę 2");
