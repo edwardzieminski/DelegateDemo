@@ -3,8 +3,11 @@ using System.Diagnostics;
 
 Machine machine = new Machine();
 
-machine.Run(machine.ToDo1);
-machine.Run(machine.ToDo2);
+var machine1Metrics = machine.Run(machine.ToDo1);
+Console.WriteLine($"Machine 1 was running for { machine1Metrics.ElapsedMilliseconds } ms");
+
+var machine2Metrics = machine.Run(machine.ToDo2);
+Console.WriteLine($"Machine 2 was running for { machine2Metrics.ElapsedMilliseconds } ms");
 
 public class Machine
 {
