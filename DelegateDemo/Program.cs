@@ -4,16 +4,16 @@ using System.Diagnostics;
 Machine machine = new Machine();
 
 var machine1Metrics = machine.Run(machine.ToDo1);
-Console.WriteLine($"Machine 1 was running for { machine1Metrics.Item2.ElapsedMilliseconds } ms");
+Console.WriteLine($"Machine 1 was running for { machine1Metrics.StopWatch.ElapsedMilliseconds } ms");
 
 var machine2Metrics = machine.Run(machine.ToDo2);
-Console.WriteLine($"Machine 2 was running for { machine2Metrics.Item2.ElapsedMilliseconds } ms");
+Console.WriteLine($"Machine 2 was running for { machine2Metrics.StopWatch.ElapsedMilliseconds } ms");
 
 public class Machine
 {
     public delegate void ToDo();
 
-    public Tuple<ToDo, Stopwatch> Run(ToDo toDoMethod)
+    public MachineResults Run(ToDo toDoMethod)
     {
         var stopWatch = new Stopwatch();
 
@@ -38,3 +38,5 @@ public class Machine
         Console.WriteLine("Zamykam maszynę 2");
     }
 }
+
+public record MachineResults(Machine.ToDo ToDoMethod, Stopwatch StopWatch);
