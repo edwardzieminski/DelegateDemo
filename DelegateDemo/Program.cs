@@ -3,11 +3,10 @@ using System.Diagnostics;
 
 Machine machine = new Machine();
 
-var machine1Metrics = machine.Run(machine.ToDo1);
+var machine1Metrics = machine.Run(Machine.ToDo1);
 Console.WriteLine($"Machine 1 was running for { machine1Metrics.StopWatch.ElapsedMilliseconds } ms");
 
-var machineExternalMethods = new MachineExternalMethods();
-var machine2Metrics = machine.Run(machineExternalMethods.ToDo2);
+var machine2Metrics = machine.Run(MachineExternalMethods.ToDo2);
 Console.WriteLine($"Machine 2 was running for { machine2Metrics.StopWatch.ElapsedMilliseconds } ms");
 
 public class Machine
@@ -25,7 +24,7 @@ public class Machine
         return new ( toDoMethod, stopWatch );
     }
 
-    public void ToDo1()
+    public static void ToDo1()
     {
         Console.WriteLine("Odpalam maszynę 1");
         Console.WriteLine("Wrum wrum 1");
@@ -35,7 +34,7 @@ public class Machine
 
 public class MachineExternalMethods
 {
-    public void ToDo2()
+    public static void ToDo2()
     {
         Console.WriteLine("Odpalam maszynę 2");
         Console.WriteLine("Wrum wrum 2");
