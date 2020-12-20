@@ -23,18 +23,16 @@ Console.WriteLine($"Machine 2 was running for { machine2Metrics.StopWatch.Elapse
 
 public static class Machine
 {
-    public delegate void ToDo();
-
-    public static MachineResults Run(Action toDoMethod)
+    public static MachineResults Run(Action toDoAction)
     {
         var stopWatch = new Stopwatch();
 
         stopWatch.Start();
-        toDoMethod();
+        toDoAction();
         stopWatch.Stop();
 
-        return new ( toDoMethod, stopWatch );
+        return new ( toDoAction, stopWatch );
     }
 }
 
-public record MachineResults(Action ToDoMethod, Stopwatch StopWatch);
+public record MachineResults(Action ToDoAction, Stopwatch StopWatch);
